@@ -1,7 +1,6 @@
 {
   "name": "proto",
   "version": "1.0.0",
-  "description": "",
   "main": "public/index.html",
   "scripts": {
     "start": "http-server",
@@ -9,6 +8,7 @@
   },
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "http-server": "^14.1.1"
   }

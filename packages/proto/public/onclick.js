@@ -1,3 +1,13 @@
+function relayEvent(event, eventName) {
+    const customEvent = new CustomEvent(eventName, {
+      bubbles: true,
+      detail: {
+        originalEvent: event
+      }
+    });
+    event.target.dispatchEvent(customEvent);
+  }
+
 
 function addFragmentFrom(url, container) {
     fetch(url)

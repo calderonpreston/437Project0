@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,400;0,700;1,700&family=Merriweather:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <script type="module" src="/js/json-loader.js"></script>
+    <script type="module">
+      import { relayEvent } from "/js/relay-event.js";
+
+      window.relayEvent = relayEvent;
+    </script>
+    <!-- Include your profile-form JavaScript file -->
+    <script src="/js/profile-form.js" type="module"></script>
+  </head>
+  <body>
+    <!-- Replace the existing JSON object with profile-form -->
+    <profile-form src="/api/profiles/prestoncaldero">
+        <!-- You can define slotted content here if needed -->
+        <!-- For example, labels and inputs -->
+        <label for="userid">User ID:</label>
+        <input type="text" name="userid">
+
+        <label for="name">Name:</label>
+        <input type="text" name="name">
+
+        <!-- Add other fields as needed -->
+    </profile-form>
+  </body>
+</html>
