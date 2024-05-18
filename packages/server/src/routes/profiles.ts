@@ -2,6 +2,7 @@
 import { Profile } from "../models/profile";
 import express, { Request, Response } from "express";
 import profiles from "../services/profile-svc";
+import { Auth, Observer } from "@calpoly/mustang";
 
 const router = express.Router();
 
