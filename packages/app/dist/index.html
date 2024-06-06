@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles/page.css">
+    <link rel="stylesheet" href="styles/tokens.css">
+    <script src="onclick.js" defer></script>
+    <script src="dropDownElement.js" defer></script>
+
+
+  <script type="module" crossorigin src="/assets/index-DfvhQ96j.js"></script>
+</head>
+<body>
+    <mu-auth provides="blazing:auth" redirect="./login.html"></mu-auth>
+    <article>
+        <nav class="navigationMenu">
+            <blazing-header></blazing-header>
+        </nav>
+        <header>
+            <h1 class="header">My Name</h1>
+            <label>
+              <input id="darkModeToggle" type="checkbox" autocomplete="off" />
+              Dark mode
+          </label>
+        </header>
+        <section class="container">
+            <section class="one">
+                <img src="/assets/profile_picture-DTLa9zG_.png" alt="Profile Picture" width="200" height="200"/>
+                <div class="profile-text">
+                    <h2>Hello!</h2>
+                    <p>This is a brief hello message and intro. Edit this text to add more details.</p>
+                </div>
+                <h2>Socials</h2>
+                <article>
+                  <button onclick="addFragmentFrom('socials.html', event.target.closest('article'))">
+                    Fetch the HTML!
+                </button>                              
+                </article>
+            </section>
+            <section class="two">
+                <h2>Additional Information</h2>
+                <dropdown-element>
+                  <button slot="actuator">Dropdown</button>
+                  <div id="panel">
+                      <ul>
+                          <li><a href="#">Option 1</a></li>
+                          <li><a href="#">Option 2</a></li>
+                          <li><a href="#">Option 3</a></li>
+                      </ul>
+                  </div>
+              </dropdown-element>
+            </section>
+        </section>
+        <footer>
+            <h3 class="footer">personName 2024</h3>
+        </footer>
+    </article>
+    </mu-auth>
+</body>
+</html>

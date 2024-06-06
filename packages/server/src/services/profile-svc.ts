@@ -27,6 +27,7 @@ function index(): Promise<Profile[]> {
 }
 
 function get(userid: String): Promise<Profile> {
+  console.log(ProfileModel.find({ userid }))
   return ProfileModel.find({ userid })
     .then((list) => list[0])
     .catch((err) => {

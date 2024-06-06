@@ -85,7 +85,7 @@ export class RestfulFormElement extends HTMLElement {
     });
   }
 
-  _authObserver = new Observer(this, "blazing:auth");
+  _authObserver = new Observer(this, "prestoncaldero:auth");
 
   get authorization() {
     return (

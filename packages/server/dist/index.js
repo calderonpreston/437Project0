@@ -50,4 +50,3 @@ app.use("/auth", import_auth.default);
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-app.use("/node_modules");

@@ -36,7 +36,11 @@ var import_profile_svc = __toESM(require("../services/profile-svc"));
 const router = import_express.default.Router();
 router.get("/:userid", (req, res) => {
   const { userid } = req.params;
-  import_profile_svc.default.get(userid).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
+  console.log("GET", userid);
+  import_profile_svc.default.get(userid).then((profile) => {
+    console.log("Profile", profile);
+    res.json(profile);
+  }).catch((err) => res.status(404).end());
 });
 router.post("/", (req, res) => {
   const newProfile = req.body;

@@ -2,16 +2,17 @@
 import { Profile } from "../models/profile";
 import express, { Request, Response } from "express";
 import profiles from "../services/profile-svc";
-import { Auth, Observer } from "@calpoly/mustang";
 
 const router = express.Router();
 
 router.get("/:userid", (req: Request, res: Response) => {
     const { userid } = req.params;
-  
+  console.log("GET", userid);
     profiles
         .get(userid)
-        .then((profile: Profile) => res.json(profile))
+        .then((profile: Profile) => {
+          console.log("Profile", profile)
+          res.json(profile)})
         .catch((err) => res.status(404).end());
 });
 router.post("/", (req: Request, res: Response) => {

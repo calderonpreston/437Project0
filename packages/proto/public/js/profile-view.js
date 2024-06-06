@@ -1,5 +1,6 @@
 // profile-view.js
-import { Auth, Observer } from "@calpoly/mustang";
+import { define, Form, Auth, Observer } from "@calpoly/mustang";
+
 
 export class ProfileViewElement extends HTMLElement {
     static styles = `
@@ -9,7 +10,6 @@ export class ProfileViewElement extends HTMLElement {
         }
         /* Add any additional styles here */
     `;
-    _authObserver = new Observer(this, "blazing:auth");
 
     static template = `
         <template>
@@ -35,6 +35,8 @@ export class ProfileViewElement extends HTMLElement {
     get src() {
         return this.getAttribute("src");
     }
+
+    _authObserver = new Observer(this, "prestoncaldero:auth");
   
     connectedCallback() {
         this._authObserver.observe(({ user }) => {
@@ -46,14 +48,14 @@ export class ProfileViewElement extends HTMLElement {
         });
       }
 
-      get authorization() {
-        console.log("Authorization for user, ", this._user);
-        return (
-          this._user?.authenticated && {
-            Authorization: `Bearer ${this._user.token}`
-          }
-        );
-      }
+    get authorization() {
+      console.log("Authorization for user, ", this._user);
+      return (
+        this._user?.authenticated && {
+          Authorization: `Bearer ${this._user.token}`
+        }
+      );
+    }
     
   
     renderSlots(json) {
@@ -68,5 +70,77 @@ export class ProfileViewElement extends HTMLElement {
         this.shadowRoot.innerHTML += slotsHTML;
     }
 }
+
+class ProfileEditor extends LitElement {
+  static uses = define({
+    "mu-form": Form.Element,
+    "input-array": InputArray.Element
+  });
+  @property()
+  username?: string;
+
+  @property({ attribute: false })
+  init?: Profile;
+
+  render() {
+    return html`
+    `;
+  }
+
+  static styles = [
+    resetStyles,
+    gridStyles,
+    css`
+      mu-form {
+        grid-column: key / end;
+      }
+      mu-form input {
+        grid-column: input;
+      }
+    `
+  ];
+}
   
+_handleSubmit(event: Form.SubmitEvent<Profile>) {
+  console.log("Handling submit of mu-form");
+  this.dispatchMessage([
+    "profile/save",
+    {
+      userid: this.userid,
+      profile: event.detail,
+      onSuccess: () =>
+        History.dispatch(this, "history/navigate", {
+          href: `/app/profile/${this.userid}`
+        }),
+      onFailure: (error: Error) =>
+        console.log("ERROR:", error)
+    }
+  ]);
+}
+
+export class ProfileViewElement extends View<Model, Msg> {
+  static uses = define({
+    "profile-editor": ProfileEditor,
+    …
+  });
+
+  render() {
+    //
+    return this.edit
+      ? html`
+          <profile-editor
+            username=${userid}
+            .init=${this.profile}
+            @mu-form:submit=${
+              (event: Form.SubmitEvent<Profile>) =>
+                this._handleSubmit(event)
+            }
+          >
+            ${fields}
+          </profile-editor>
+        `
+      : html`…`; // the non-editing view
+  }
+
+
 customElements.define("profile-view", ProfileViewElement);

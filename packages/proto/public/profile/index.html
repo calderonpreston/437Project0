@@ -21,7 +21,6 @@
 
       window.relayEvent = relayEvent;
     </script>
-    <!-- Include your profile-form JavaScript file -->
     <script src="/js/profile-form.js" type="module"></script>
     <script type="module">
       import { define, Auth } from "@calpoly/mustang";
@@ -31,7 +30,7 @@
     <script type="importmap">
       {
         "imports": {
-          "@calpoly/mustang": "../../../node_modules/@calpoly/mustang/dist/mustang.mjs"
+          "@calpoly/mustang": "/node_modules/@calpoly/mustang/dist/mustang.mjs"
         }
       }
     </script>
@@ -40,19 +39,15 @@
     <mu-auth provides="prestoncaldero:auth" redirect="../login.html">
       <blazing-header></blazing-header>
       <main>
-        <!-- Replace the existing JSON object with profile-form -->
         <profile-form src="/api/profiles/prestoncaldero">
-            <!-- You can define slotted content here if needed -->
-            <!-- For example, labels and inputs -->
             <label for="userid">User ID:</label>
             <input type="text" name="userid">
 
             <label for="name">Name:</label>
             <input type="text" name="name">
 
-            <!-- Add other fields as needed -->
         </profile-form>
-        <profile-view src="/api/profiles/blaze">
+        <profile-view src="/api/profiles/prestoncalddero">
           <span slot="userid">prestoncaldero</span>
           <span slot="name">Preston Calderon</span>
         </profile-view>

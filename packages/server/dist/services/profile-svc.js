@@ -41,6 +41,7 @@ function index() {
   return ProfileModel.find();
 }
 function get(userid) {
+  console.log(ProfileModel.find({ userid }));
   return ProfileModel.find({ userid }).then((list) => list[0]).catch((err) => {
     throw `${userid} Not Found`;
   });
